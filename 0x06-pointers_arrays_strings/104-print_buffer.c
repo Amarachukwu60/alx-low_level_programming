@@ -2,53 +2,54 @@
 #include <stdio.h>
 
 /**
- * print_buffer - prints buffer
- * @b: buffer
- * @size: size
+ * print_buffer - Prints buffer in a specific format.
+ * @buffer: The buffer to be printed.
+ * @size: The size of the buffer.
+ *
  * Return: void
  */
-void print_buffer(char *b, int size)
+void print_buffer(char *buffer, int size)
 {
-    int o, j, i;
+	int offset, row_size, i;
 
-    o = 0;
+	offset = 0;
 
-    if (size <= 0)
-    {
-        printf("\n");
-        return;
-    }
+	if (size <= 0)
+	{
+		printf("\n");
+		return;
+	}
 
-    while (o < size)
-    {
-        j = size - o < 10 ? size - o : 10;
-        printf("%08x: ", o);
+	while (offset < size)
+	{
+		row_size = size - offset < 10 ? size - offset : 10;
+		printf("%08x: ", offset);
 
-        for (i = 0; i < 10; i++)
-        {
-            if (i < j)
-                printf("%02x", *(b + o + i));
-            else
-                printf("  ");
-            
-            if (i % 2)
-            {
-                printf(" ");
-            }
-        }
+		for (i = 0; i < 10; i++)
+		{
+			if (i < row_size)
+				printf("%02x", *(buffer + offset + i));
+			else
+				printf("  ");
 
-        for (i = 0; i < j; i++)
-        {
-            int c = *(b + o + i);
+			if (i % 2)
+			{
+				printf(" ");
+			}
+		}
 
-            if (c < 32 || c > 132)
-            {
-                c = '.';
-            }
-            printf("%c", c);
-        }
+		for (i = 0; i < row_size; i++)
+		{
+			int character = *(buffer + offset + i);
 
-        printf("\n");
-        o += 10;
-    }
+			if (character < 32 || character > 132)
+			{
+				character = '.';
+			}
+			printf("%c", character);
+		}
+
+		printf("\n");
+		offset += 10;
+	}
 }

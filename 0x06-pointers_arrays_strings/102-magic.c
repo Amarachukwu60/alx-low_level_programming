@@ -1,13 +1,5 @@
 #include <stdio.h>
 
-/**
- * main - Entry point of the program
- *
- * Description: This program demonstrates a single line of code to modify
- *              the value of a[2] using pointer arithmetic.
- *
- * Return: Always 0 (Success)
- */
 int main(void)
 {
 	int n;
